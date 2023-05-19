@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ super() }} - {{ title }}
+{% endblock %}
+
+{% block content %}
+    <section class="offers container">
+      <div class="top">
+        <a href="/women_goods">
+          <div class="top__offers offer_1">
+            <div class="offers__text">
+              <h3>30% OFF</h3>
+              <h2>FOR WOMEN</h2>
+            </div>
+          </div>
+        </a>
+        <a href="/men_goods">
+          <div class="top__offers offer_2">
+            <div class="offers__text">
+              <h3>HOT DEAL</h3>
+              <h2>FOR MEN</h2>
+            </div>
+          </div>
+        </a>
+        <a href="/kids_goods">
+          <div class="top__offers offer_3">
+            <div class="offers__text">
+              <h3>NEW ARRIVALS</h3>
+              <h2>FOR KIDS</h2>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="down">
+        <a href="/accessories">
+          <div class="offer_4">
+            <div class="offers__text__large">
+              <h3>LUXIROUS &amp;&nbsp;TRENDY</h3>
+              <h2>ACCESSORIES</h2>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+    <section class="benefits">
+      <div class="benefits__wrapper container">
+        <div class="benefits__benefit benefit-1">
+          <img src="/static/img/benefits/delivery.png" alt="benefits" />
+          <h2>Free Delivery</h2>
+          <p>Worldwide delivery on all. Authorit tively morph next-generation innov tion with extensive models.</p>
+        </div>
+        <div class="benefits__benefit benefit-2">
+          <img src="/static/img/benefits/sales.png" alt="benefits" />
+          <h2>Sales &amp;&nbsp;discounts</h2>
+          <p>Worldwide delivery on all. Authorit tively morph next-generation innov tion with extensive models.</p>
+        </div>
+        <div class="benefits__benefit benefit-3">
+          <img src="/static/img/benefits/assurance.png" alt="benefits" />
+          <h2>Quality assurance</h2>
+          <p>Worldwide delivery on all. Authorit tively morph next-generation innov tion with extensive models.</p>
+        </div>
+      </div>
+    </section>
+    <section class="feedback-subscribe">
+      <div class="feedback-subscribe__wrapper container">
+        <div class="feedback">
+          <img src="/static/img/feedback/feedback_foto.png" alt="feedback" />
+          <p>
+            “Vestibulum quis porttitor dui! Quisque viverra nunc mi,
+            <span class="feedback__span">a pulvinar purus condimentum</span>“
+          </p>
+        </div>
+
+        <div class="subscribe">
+          <h2>SUBSCRIBE</h2>
+          <h3>FOR OUR NEWLETTER AND PROMOTION</h3>
+          <form class="subscribe-form" action="#">
+            <input class="form-email" type="email" placeholder="Enter Your Email" />
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </section>
+{% endblock %}
