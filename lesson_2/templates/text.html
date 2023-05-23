@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Вводим текст</h1>
+<form action="/text" method="post">
+    <input type="text" name="data" placeholder="Строчка текста">
+<input type="submit" value="Отправить">
+</form>
+{% endblock %}
