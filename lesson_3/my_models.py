@@ -34,3 +34,12 @@ class Authors(db.Model):
     first_name = db.Column(db.String(80), unique=True, nullable=False)
     last_name = db.Column(db.String(80), unique=True, nullable=False)
     books = db.relationship('Books', backref='author')
+
+
+# ----------- Задание 3 ----------------------
+class Users(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), nullable=False)
+    email = db.Column(db.String(80), unique=True, nullable=False)
+    password = db.Column(db.String(80), nullable=False)
+    birth_date = db.Column(db.Date, nullable=False)

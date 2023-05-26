@@ -1,9 +1,8 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 from random import choice, randint
-
-from sqlalchemy import select
-
-from my_models import db, Students, Faculty, Books, Authors
+from my_models import db, Students, Faculty, Books, Authors, Users
+from flask_wtf.csrf import CSRFProtect
+from forms import SignupForm
 
 QTY = 5
 ID_DATA = [i for i in range(1, QTY + 1)]
@@ -12,6 +11,8 @@ LAST_YEAR = 2022
 QTY_BOOKS = [i for i in range(QTY**3)]
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'secretkey'
+csrf = CSRFProtect(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mydatabase.db'
 db.init_app(app)
@@ -91,6 +92,33 @@ def get_books():
     books = Books.query.all()
     context = {'books': books}
     return render_template('books.html', **context)
+
+
+"""
+Создать форму регистрации для пользователя.  Форма должна содержать поля: имя, электронная почта, пароль (с
+подтверждением), дата рождения, согласие на обработку персональных данных.  Валидация должна проверять, что все поля
+заполнены корректно (например, дата рождения должна быть в формате дд.мм.гггг).  При успешной регистрации
+пользователь должен быть перенаправлен на страницу подтверждения регистрации
+"""
+
+
+@app.route('/hello/<name>')
+def hello(name):
+    return render_template('hello.html', name=name)
+
+
+@app.route('/signup/', methods=['GET', 'POST'])
+def signup():
+    form = SignupForm()
+    if request.method == 'POST' and form.validate():
+
+        user = Users(name=form.name.data, email=form.email.data, password=hash(form.password.data),
+                     birth_date=form.birth_date.data)
+        db.session.add(user)
+        db.session.commit()
+
+        return redirect(url_for('hello', name=form.name.data))
+    return render_template('form.html', form=form)
 
 
 if __name__ == '__main__':
