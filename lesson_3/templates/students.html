@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% for student in students %}
+        <p>
+            Имя студента: {{ student.first_name }} {{ student.last_name }} <br>
+            Факультет: {{ student.faculty_id }} <br>
+        </p>
+    {% endfor %}
+
+{% endblock %}
