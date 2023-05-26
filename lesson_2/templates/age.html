@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Вводим текст</h1>
+<form action="/age" method="post">
+    <input type="text" name="name" placeholder="Имя">
+    <input type="text" name="age" placeholder="Возраст">
+<input type="submit" value="Отправить">
+</form>
+{% endblock %}

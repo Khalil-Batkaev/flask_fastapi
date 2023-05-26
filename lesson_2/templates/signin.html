@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Логинимся</h1>
+<form action="/signin" method="post">
+    <input type="text" name="name" placeholder="Имя">
+    <input type="email" name="email" placeholder="email">
+<input type="submit" value="Отправить">
+</form>
+{% endblock %}

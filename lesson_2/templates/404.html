@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+<p class="col-12">Мы не нашли пользователя: &laquo;{{ url
+}}&raquo;.<br>
+<a href="{{ url_for('index') }}">Попробуйте вернуться на
+главную</a>
+</p>
+</div>
+{% endblock %}
