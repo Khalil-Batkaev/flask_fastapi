@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% for book in books %}
+        <p>
+            Название книги: {{ book.name }} <br>
+            Автор: {{ book.author_id }}
+        </p>
+    {% endfor %}
+
+{% endblock %}
