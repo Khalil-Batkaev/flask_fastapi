@@ -17,7 +17,7 @@ from fastapi.responses import HTMLResponse
 
 
 app = FastAPI()
-templates = Jinja2Templates(directory="templates")
+templates = Jinja2Templates(directory="lesson_5/templates")
 
 
 class User(BaseModel):
@@ -30,10 +30,10 @@ class User(BaseModel):
 users = []
 
 
-@app.get('/add_users')
+@app.on_event("startup")
 async def add_users():
     for i in range(6):
-        users.append(User(id=i, name=f'movie_{i}', email=f'movie_{i}', password=f'movie_{i}'))
+        users.append(User(id=i, name=f'movie_{i}', email=f'movie_{i}@test.ru', password=f'movie_{i}'))
     return {'msg': 'ok'}
 
 
