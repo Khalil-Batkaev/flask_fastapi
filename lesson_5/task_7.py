@@ -1,6 +1,6 @@
 from typing import List, Optional
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 """
 Создать RESTful API для управления списком задач. Приложение должно
@@ -32,19 +32,19 @@ tasks = []
 
 
 class Task(BaseModel):
-    id: Optional[int]
-    title: str
-    description: str
-    status: str = STATUS[0]
-    is_deleted: bool = False
+    id: Optional[int] = Field(description="Task id", example=1)
+    title: str = Field(description="Title of the task", example='New task')
+    description: str = Field(description="Description of the task", example='Do anything!')
+    status: str = Field(description="Status of the task", example=STATUS[0])
+    is_deleted: bool = Field(description='Task deleted or not', example='False')
 
 
-@app.get('/tasks', response_model=List[Task])
+@app.get('/tasks', response_model=List[Task], summary='Get all tasks')
 async def read_tasks():
     return tasks
 
 
-@app.get('/tasks/{task_id}', response_model=Task)
+@app.get('/tasks/{task_id}', response_model=Task, summary='Get the task by id')
 async def read_task(task_id: int):
     for task in tasks:
         if task.id == task_id:
@@ -52,7 +52,7 @@ async def read_task(task_id: int):
     raise HTTPException(status_code=404, detail='task not found')
 
 
-@app.post('/tasks', response_model=Task)
+@app.post('/tasks', response_model=Task, summary='Create a new task')
 async def create_task(task: Task):
     if task.status not in STATUS:
         raise HTTPException(status_code=400, detail='wrong status')
@@ -62,7 +62,7 @@ async def create_task(task: Task):
     return task
 
 
-@app.put('/tasks/{task_id}', response_model=Task)
+@app.put('/tasks/{task_id}', response_model=Task, summary='Update the task by id')
 async def update_task(task_id: int, task: Task):
     if task.status not in STATUS:
         raise HTTPException(status_code=400, detail='wrong status')
@@ -75,7 +75,7 @@ async def update_task(task_id: int, task: Task):
     raise HTTPException(status_code=404, detail='task not found')
 
 
-@app.delete('/tasks/{task_id}')
+@app.delete('/tasks/{task_id}', summary='Delete the task by id')
 async def update_task(task_id: int):
     for i, _task in enumerate(tasks):
         if task_id == _task.id:
