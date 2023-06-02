@@ -39,4 +39,4 @@ async def add_users():
 
 @app.get('/users', response_class=HTMLResponse)
 async def read_users(request: Request):
-    return templates.TemplateResponse('index.html', context={'request': request, 'users': users})
+    return templates.TemplateResponse('users.html', context={'request': request, 'users': users})
