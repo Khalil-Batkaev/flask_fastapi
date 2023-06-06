@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Lesson 5</title>
+</head>
+Users
+<body>
+
+{% for user in users %}
+    <p>
+        id: {{ user.id }}<br>
+        name: {{ user.name }}<br>
+        email: {{ user.email }}<br>
+        password: {{ user.password }}<br>
+    </p>
+{% endfor %}
+
+</body>
+</html>
